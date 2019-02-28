@@ -1,22 +1,54 @@
 package bank;
+import java.util.*;
 
 public class MyMainApp {
 	public static void main(String s[])
 	{
 		Customer objCustomer = new Customer();
-		SavingAccount objAccount = new SavingAccount();
-		objAccount.storeAccountDetail(111, 20000, 4.5f);
-		objCustomer.storeCustomerDetail(1,"John","Phx","34343434",objAccount);		
+		SavingAccount custAccount = new SavingAccount();
+		
+		//Scanning
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter Customer Details..");
+		
+		int custId = sc.nextInt();
+		String custName = sc.next();
+		String custCity = sc.next();
+		String custPhone = sc.next();
+		
+		System.out.println("Enter Customer Account Details..");
+
+		int accNo = sc.nextInt();
+		double accBalance = sc.nextDouble();
+		float interestRate = sc.nextFloat();
+		
+		custAccount.storeAccountDetail(accNo, accBalance, interestRate);
+		objCustomer.storeCustomerDetail(custId,custName,custCity,custPhone,custAccount);		
 		objCustomer.displayCustomerDetail();
 		
-		
+		//----------------------------------------------Second Customer -----------------------//
 
 		Customer objCustomer1 = new Customer();
-		CheckingAccount objAccount1 = new CheckingAccount();
-		objAccount1.storeAccountDetail(112, 30000);
-		objCustomer1.storeCustomerDetail(2,"George","Phx","98343434",objAccount1);		
-		objCustomer1.displayCustomerDetail();
+		CheckingAccount custAccount1 = new CheckingAccount();
 		
+				
+		System.out.println("Enter Customer Details..");
+		
+		int custId1 = sc.nextInt();
+		String custName1 = sc.next();
+		String custCity1 = sc.next();
+		String custPhone1 = sc.next();
+		
+		System.out.println("Enter Customer Account Details..");
+
+		int accNo1 = sc.nextInt();
+		double accBalance1 = sc.nextDouble();
+		int od = sc.nextInt();
+		
+		custAccount1.storeAccountDetail(accNo1, accBalance1, od);
+		objCustomer1.storeCustomerDetail(custId1, custName1, custCity1, custPhone1, custAccount1);		
+		objCustomer1.displayCustomerDetail();
 		
 		//--------------------------------------------------Services-----------------//
 		
