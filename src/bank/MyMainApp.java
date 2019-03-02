@@ -5,7 +5,7 @@ import java.util.*;
 
 public class MyMainApp {
 	
-	Customer objCustomer[];
+	 static Customer objCustomer[];
 	
 	
 	public void storeAllCustomers(){
@@ -81,17 +81,13 @@ public class MyMainApp {
 	
 	
 	public Customer searchCustomer(int custId) {
-System.out.println("step1");
+		System.out.println(objCustomer);
 			for(Customer cust : objCustomer) {
-				System.out.println("step2");
 				if(cust.getCustId() == custId) {
-					System.out.println("step3");
 					System.out.println("Employee found");
 					return cust;
 				}
-				System.out.println("step4");
 			}
-			System.out.println("step5");
 			return null;
 		}
 		
@@ -197,7 +193,7 @@ System.out.println("step1");
 	}
 	public static void main(String s[]){
 		try{
-			System.out.println("please enter customer ID");
+			System.out.println("Please enter customer ID");
 			Scanner sc = new Scanner(System.in);
 	
 			int custId = sc.nextInt();
@@ -207,7 +203,6 @@ System.out.println("step1");
 			Customer currentCust = bankApp.searchCustomer(custId);
 			boolean retry = true;
 			while(retry) {
-				System.out.println("While hit");
 				retry = bankApp.menuScreen(ac, currentCust, retry);	
 			}
 		}catch (Exception e) {
