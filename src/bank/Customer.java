@@ -3,12 +3,18 @@ package bank;
 public class Customer {
 	//Always start with private variables, change to public as needed in the the future. 
 	private int custId; //primitive types: int 4bytes-char 2bytes-float 2bytes-short-long-double-boolean-byte
+
 	private String custName;
 	private String custCity;
 	private String custPhone;
 	private Account custAccount;
 	
-	
+	public int getCustId() {
+		return custId;
+	}
+	public void setCustId(int custId) {
+		this.custId = custId;
+	}
 	//Java creates a constructor for  you if you dont create one. 
 	
 	public void storeCustomerDetail(int custId,String custName,String custCity,
