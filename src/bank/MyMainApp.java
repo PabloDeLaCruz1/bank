@@ -6,14 +6,51 @@ import java.util.*;
 public class MyMainApp {
 	
 	 static Customer objCustomer[];
-	
+	 static List<Transaction> transList1 = new ArrayList<Transaction>();
+	 static List<Transaction> transList2 = new ArrayList<Transaction>();
+
+	 static Transaction sTrans[];
 	
 	public void storeAllCustomers(){
 		try {
 		Scanner sc = new Scanner(System.in);
 		MyMainApp bankApp = new MyMainApp();
-
+		Map<String, Customer> bankMap = new HashMap<String, Customer>();
+		
+		//Creates 2 customers as dummy data
 		objCustomer = new Customer[2];
+					
+		//Adds customers to bank app
+		BankServices bServices = new BankServices();
+		bServices.addNewCustomer(objCustomer[0]);
+		bServices.addNewCustomer(objCustomer[1]);
+
+		//Create dummy accounts and transactions
+		SavingAccount sAccount0 = new SavingAccount();
+		SavingAccount sAccount1 = new SavingAccount();
+		CheckingAccount cAccount0 = new CheckingAccount();
+		CheckingAccount cAccount1 = new CheckingAccount();
+		Transaction transaction00 = new Transaction();
+		Transaction transaction01 = new Transaction();
+		Transaction transaction10 = new Transaction();
+		Transaction transaction11 = new Transaction();
+
+		
+		//Adds accounts and transactions to our customers
+		objCustomer[0].addSAccount(sAccount0);
+		objCustomer[0].addCAccount(cAccount0);
+		objCustomer[0].addTransaction(transaction00);
+		objCustomer[0].addTransaction(transaction01);
+		
+		objCustomer[1].addSAccount(sAccount1);
+		objCustomer[1].addCAccount(cAccount1);
+		objCustomer[1].addTransaction(transaction10);
+		objCustomer[1].addTransaction(transaction11);
+		
+		//Adds transactions to our customers
+//		custMap.put("1", transList1);
+//		custMap.put("2", transList2);
+
 		for(int cnt =0; cnt < objCustomer.length; cnt++) {
 			System.out.println("Enter Customer details for customer number: " + cnt);
 			objCustomer[cnt] = new Customer();
@@ -43,9 +80,9 @@ public class MyMainApp {
 //				double accBalance = sc.nextDouble();
 //				float interestRate = sc.nextFloat();
 				
-				SavingAccount sa = new SavingAccount();
-				sa.storeAccountDetail(1, 10000, 2);
-				objCustomer[cnt].storeCustomerDetail(1+cnt, "Pablo"+cnt, "Paterson"+cnt, custPhone, sa);
+//				SavingAccount sa = new SavingAccount();
+//				sa.storeAccountDetail(1, 10000, 2);
+//				objCustomer[cnt].storeCustomerDetail(1+cnt, "Pablo"+cnt, "Paterson"+cnt, custPhone, sa, null,null);
 				
 				break;
 					
@@ -55,9 +92,9 @@ public class MyMainApp {
 				double accBalance1 = sc.nextDouble();
 				int od = sc.nextInt();	
 				
-				CheckingAccount ca = new CheckingAccount();
-				ca.storeAccountDetail(accNo1, accBalance1, od);
-				objCustomer[cnt].storeCustomerDetail(1+cnt, "Pablo"+cnt, "Paterson"+cnt, "832323", ca);
+//				CheckingAccount ca = new CheckingAccount();
+//				ca.storeAccountDetail(accNo1, accBalance1, od);
+//				objCustomer[cnt].storeCustomerDetail(1+cnt, "Pablo"+cnt, "Paterson"+cnt, "832323", ca, null, null);
 				
 				break;
 			}

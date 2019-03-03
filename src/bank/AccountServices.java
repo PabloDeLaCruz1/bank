@@ -14,7 +14,6 @@ public class AccountServices {
 		cashDeposit(objCustomerTo,amountToTransfer);
 		
 	}
-	
 	public void cashWithdraw(Customer objCustomer,int amountToWithdraw)
 	{
 		if(amountToWithdraw < 20 || amountToWithdraw%20 !=0 )
@@ -40,4 +39,11 @@ public class AccountServices {
 		objCustomer.getAccount().setAccBalance(
 						objCustomer.getAccount().getAccBalance() + amountToDeposit);
 	}
+//	public Account createNewAccount(String accType){
+//		if(accType == "S") {
+//			SavingAccount newAccount = new SavingAccount();
+//		}else if (accType == "C") {
+//			CheckingAccount newAccount = new CheckingAccount();
+//		}
+//	}
 }

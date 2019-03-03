@@ -1,5 +1,10 @@
 package bank;
 
+//TODO change to interface
+//interface Account{
+//	public void createAccount;
+//	public void deleteAccount;
+//}
 public abstract class Account {
 	private int accNo;
 	
