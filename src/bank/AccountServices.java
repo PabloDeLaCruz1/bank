@@ -39,11 +39,5 @@ public class AccountServices {
 		objCustomer.getAccount().setAccBalance(
 						objCustomer.getAccount().getAccBalance() + amountToDeposit);
 	}
-//	public Account createNewAccount(String accType){
-//		if(accType == "S") {
-//			SavingAccount newAccount = new SavingAccount();
-//		}else if (accType == "C") {
-//			CheckingAccount newAccount = new CheckingAccount();
-//		}
-//	}
+
 }
