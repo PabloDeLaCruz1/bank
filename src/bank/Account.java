@@ -1,31 +1,28 @@
 package bank;
 
-//TODO change to interface
-//interface Account{
-//	public void createAccount;
-//	public void deleteAccount;
-//}
-public abstract class Account {
-	private int accNo;
-	
-	private double accBalance;
+import java.util.concurrent.atomic.AtomicInteger;
 
-	public void setAccBalance(double accBalance) {
+//TODO change to interface
+public abstract class Account {
+	private int accBalance;
+	private String type;
+	
+	public int getCustId() {
+		return custId;
+	}
+	private int custId;
+	public void setAccBalance(int accBalance) {
 		this.accBalance = accBalance;
 	}
-
-	
-	public void storeAccountDetail(int accNo,double accBalance)
-	{
-		this.accNo = accNo;
+	public void storeAccountDetail(int accBalance, String type, int custId){
 		this.accBalance=accBalance;
+		this.type = type;
+		this.custId = custId;
 	}
-	public void displayAccountDetail()
-	{
-		System.out.println(accNo + "   "  + accBalance);
-	}
-	
-	public double getAccBalance() {
+	public int getAccBalance() {
 		return accBalance;	
+	}
+	public String getType() {
+		return type;
 	}
 }

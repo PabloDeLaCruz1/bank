@@ -1,16 +1,11 @@
 package bank;
 
 public class SavingAccount extends Account{
-
-	private float interestRate; 
 	
-	//Class overloading- same function name, different amount of arguments
-	public void storeAccountDetail(int accNo, double accBalance, float interestRate	) {
-		super.storeAccountDetail(accNo, accBalance);
-		this.interestRate = interestRate;
+	public void storeAccountDetail(int accBalance, int custId	) {
+		super.storeAccountDetail(accBalance, "Savings", custId);
 	}
-	public void displayAccDetail() {
-		super.displayAccountDetail();
-		System.out.println("Interest Rate : " + interestRate);
-	}
+//	public void displayAccDetail() {
+//		System.out.println("Savings Account ID: " + super.getAccNo() + " || Balance: "  + super.getAccBalance() + " || Interest Rate: " + this.interestRate + " || Type: " + super.getType());
+//	}
 }

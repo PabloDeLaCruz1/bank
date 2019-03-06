@@ -2,19 +2,18 @@ package bank;
 
 public class AccountServices {
 
-	public double getBalance(Customer objCustomer)
+	public double getBalance(Account currentAccount)
 	{
-//		Account account = objCustomer.getAccount();
-		return objCustomer.getAccount().getAccBalance();
+		return currentAccount.getAccBalance();
 	}
-	public void fundTransfer(Customer objCustomerFrom,
-						Customer objCustomerTo,int amountToTransfer)
+	public void fundTransfer(Account currentAcc,
+						Account accountTo, int amountToTransfer)
 	{
-		cashWithdraw(objCustomerFrom, amountToTransfer);
-		cashDeposit(objCustomerTo,amountToTransfer);
+		cashWithdraw(amountToTransfer, currentAcc);
+		cashDeposit(accountTo, amountToTransfer);
 		
 	}
-	public void cashWithdraw(Customer objCustomer,int amountToWithdraw)
+	public void cashWithdraw(int amountToWithdraw, Account currentAcc)
 	{
 		if(amountToWithdraw < 20 || amountToWithdraw%20 !=0 )
 		{
@@ -22,22 +21,22 @@ public class AccountServices {
 		}
 		else
 		{
-			if(amountToWithdraw > objCustomer.getAccount().getAccBalance())
+			if(amountToWithdraw > currentAcc.getAccBalance())
 			{
 				System.out.println("Invalid withdraw amount ... Your current balance is : " 
-							+ getBalance(objCustomer));
+							+ currentAcc.getAccBalance());
 			}
 			else
 			{
-				objCustomer.getAccount().setAccBalance(
-						objCustomer.getAccount().getAccBalance() - amountToWithdraw);
+				currentAcc.setAccBalance(
+						currentAcc.getAccBalance() - amountToWithdraw);
 			}
 		}
 	}
-	public void cashDeposit(Customer objCustomer,int amountToDeposit)
+	public void cashDeposit(Account currentAcc, int amountToDeposit)
 	{
-		objCustomer.getAccount().setAccBalance(
-						objCustomer.getAccount().getAccBalance() + amountToDeposit);
+		currentAcc.setAccBalance(
+						currentAcc.getAccBalance() + amountToDeposit);
 	}
 
 }

@@ -1,0 +1,19 @@
+JDBC
+
+Customer
+	Custid primary key (sequence)
+	Custname vcarchar(10)
+	custcity varchar(10)
+	custphone varchar(10)
+	
+Account
+	accountId primary key (sequence)
+	accType varchar(10),
+	accbalnce numberi
+		cust id foreing key customer(custid) not null
+		
+transaction
+	tranid primary key, (sequence)
+	tranamount numberi,
+	accountid foreing key account9ccount id) not null
+	trandate date

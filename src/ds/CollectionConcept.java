@@ -1,6 +1,10 @@
 package ds;
 
-import java.util.*; //collection in this package
+//collection in this package
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 class Employee {
 	private int eid;

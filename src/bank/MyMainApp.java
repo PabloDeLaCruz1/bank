@@ -1,197 +1,215 @@
 package bank;
-import java.util.*;
-
-
+import java.util.Scanner;
 
 public class MyMainApp {
+	static DataBase db = new DataBase();
+	static BankServices allCustomers = new BankServices();
+	static Scanner sc = new Scanner(System.in);
+	//-----DB---//
+	static java.util.Date dt = new java.util.Date();
+	static java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+	static String currentTime = sdf.format(dt);
 	
-	 Customer objCustomer[];
-	
-	public void storeAllCustomers(){
+
+	public static void storeAllCustomers(){
 		try {
-//		Scanner sc = new Scanner(System.in);
-//		MyMainApp bankApp = new MyMainApp();
-		
-		//Creates 2 customers as dummy data
-		objCustomer = new Customer[2];
-					
-
-System.out.println("step 1");
-		//Create dummy accounts and transactions
-		SavingAccount sAccount0 = new SavingAccount();
-		SavingAccount sAccount1 = new SavingAccount();
-		CheckingAccount cAccount0 = new CheckingAccount();
-		CheckingAccount cAccount1 = new CheckingAccount();
-		Transaction transaction00 = new Transaction();
-		Transaction transaction01 = new Transaction();
-		Transaction transaction10 = new Transaction();
-		Transaction transaction11 = new Transaction();
-
-		System.out.println("step 2");
-
-		//Adds accounts and transactions to our customers
-		objCustomer[0].addSAccount(sAccount0);
-		objCustomer[0].addCAccount(cAccount0);
-		objCustomer[0].addTransaction(transaction00);
-		objCustomer[0].addTransaction(transaction01);
-		System.out.println("step 3");
-
-		
-		objCustomer[1].addSAccount(sAccount1);
-		objCustomer[1].addCAccount(cAccount1);
-		objCustomer[1].addTransaction(transaction10);
-		objCustomer[1].addTransaction(transaction11);
-		System.out.println("step 4");
-
-		//Adds customers to bank app
-		BankServices bServices = new BankServices();
-		bServices.addNewCustomer(objCustomer[0]);
-		bServices.addNewCustomer(objCustomer[1]);
-
-		System.out.println("Showing all customers");
-		bServices.getAllCustomers();
-
-//		for(int cnt =0; cnt < objCustomer.length; cnt++) {
-//			System.out.println("Enter Customer details for customer number: " + cnt);
-//			objCustomer[cnt] = new Customer();
-//			
-//			System.out.println("What type of account do you want? (S for savings, C for checking");
-////			String accType = sc.next();
-//			
-//			System.out.println("Enter Customer Details (id,name,city,phone)");
-//			
-////			int custId = sc.nextInt();
-////			String custName = sc.next();
-////			String custCity = sc.next();
-//			
-//			boolean retry = true;
-//			String custPhone = null;
-//			
-//			while(retry) {
-//				System.out.println("please enter phone number");
-////				custPhone = sc.next();
-//				retry = bankApp.validatePhone("1234567890");	
-//			}
-//
-//			switch("S") {
-//			case"S":
-//				System.out.println("Enter Customer Account Details for savings account..(accNo, balance, interest");
-////				int accNo = sc.nextInt();
-////				double accBalance = sc.nextDouble();
-////				float interestRate = sc.nextFloat();
-//				
-////				SavingAccount sa = new SavingAccount();
-////				sa.storeAccountDetail(1, 10000, 2);
-////				objCustomer[cnt].storeCustomerDetail(1+cnt, "Pablo"+cnt, "Paterson"+cnt, custPhone, sa, null,null);
-//				
-//				break;
-//					
-//			case"C":
-//				System.out.println("Enter Customer Account Details for checking account..(id, balance, od");
-//				int accNo1 = sc.nextInt();
-//				double accBalance1 = sc.nextDouble();
-//				int od = sc.nextInt();	
-//				
-////				CheckingAccount ca = new CheckingAccount();
-////				ca.storeAccountDetail(accNo1, accBalance1, od);
-////				objCustomer[cnt].storeCustomerDetail(1+cnt, "Pablo"+cnt, "Paterson"+cnt, "832323", ca, null, null);
-//				
-//				break;
-//			}
-//		}
-		}
-//		catch (PhoneNumberException e) {
-//		System.out.println(e.getErrorMesssage());
-//		}
-		catch (Exception e) {
-			// TODO: handle exception
-		}
-	}
-
-	
-	public void displayAllCustomers() {
-		for(Customer cust : objCustomer) {
-			cust.displayCustomerDetail();
-			System.out.println("--------------------");
-		}
-	}
-	
-	
-
-	
-public boolean mainMenu(boolean retry) {
-		try {
-			Scanner sc = new Scanner(System.in);
-			MyMainApp bankApp = new MyMainApp();
-			BankServices bankServices = new BankServices();
-
-			System.out.println("----------------------Welcome to Bank of Pablo----------------------");
-			System.out.println("----------------------------------------------------------");
-			System.out.println("-------------------1--Customer Login-------------------------");
-			System.out.println("-------------------2--Create New Customer ----------------------");
-			System.out.println("-------------------3--Exit--------------------------------");
+			//Create dummy accounts and transactions
+			SavingAccount sAccount0 = new SavingAccount();
+			SavingAccount sAccount1 = new SavingAccount();
+//			sAccount0.storeAccountDetail(10000, 1);
+//			sAccount1.storeAccountDetail(20000, 2);
 			
-			System.out.println("Please select 1, 2, or 3...");
+			CheckingAccount cAccount0 = new CheckingAccount();
+			CheckingAccount cAccount1 = new CheckingAccount();
+			
+			cAccount0.storeAccountDetail(10000, 1);
+			cAccount1.storeAccountDetail(20000, 2);
+			
+			Transaction transaction10 = new Transaction();
+			Transaction transaction11 = new Transaction();
+			Transaction transaction20 = new Transaction();
+			Transaction transaction22 = new Transaction();
+			
+			Customer cust1 = new Customer();
+			Customer cust2 = new Customer();
+			
+			cust1.storeCustomerDetail("Pabloo", "paterson", "9322312312");
+			cust2.storeCustomerDetail("Pedro", "P-Town", "9322311111");
+			
+			cust1.addSAccount(sAccount0);
+			cust1.addCAccount(cAccount0);
+			cust1.addTransaction(transaction10);
+			cust1.addTransaction(transaction11);
+			cust2.addTransaction(transaction20);
+			cust2.addTransaction(transaction22);
+			
+			transaction10.storeTransactionDetails(111, 1, "Savings");
+			transaction11.storeTransactionDetails(1111, 11, "Checking");
+			transaction20.storeTransactionDetails(222, 2, "Savings");
+			transaction22.storeTransactionDetails(2222, 22, "Savings");
+			
+			cust2.addSAccount(sAccount1);
+			cust2.addCAccount(cAccount1);
+			
+			allCustomers.addNewCustomer(cust1);
+			allCustomers.addNewCustomer(cust2);
+			
+			System.out.println("Stored all customers, accounts and services");
+
+		}
+		catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+	}
+	public void newCustomer() throws PhoneNumberException{
+		try {
+			System.out.println("Enter Customers Name");
+			String custName = sc.next();
+			
+			System.out.println("Enter Customers City");
+			String custCity = sc.next();
+			
+			String custPhone = null;
+			boolean retry = true;
+			while(retry) {
+				System.out.println("Enter Customer Phone");
+				custPhone = sc.next();
+				retry = validatePhone(custPhone);	
+			}
+
+			Customer newCust = new Customer();
+			newCust.storeCustomerDetail(custName, custCity, custPhone);
+			Integer custId = newCust.getCustId();
+			allCustomers.allCustomers.put(custId,newCust);
+			
+			db.insertCustomer(custName, custCity, custPhone);
+			
+			newAccount(newCust);
+				
+		}catch (PhoneNumberException e) {
+			System.out.println(e.getErrorMesssage());
+		}
+		catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+	}
+	public void newAccount(Customer currentCust) {
+			System.out.println("What type of account do you want? (S for savings, C for checking");
+		String accType = sc.next();
+		
+		switch(accType) {
+		case"S":
+			System.out.println("Enter Customer Account Details for savings account.");
+			System.out.println("Balance: ");
+			int sAccBalance = sc.nextInt();
+			System.out.println("Interest Rate: ");
+	
+			float interestRate = sc.nextFloat();
+			
+			SavingAccount newSAccount = new SavingAccount();
+//			newSAccount.storeAccountDetail(sAccBalance, interestRate);
+			currentCust.addSAccount(newSAccount);
+			
+			//----DB-----//
+			
+			db.insertAccount(sAccBalance, "Savings", currentCust.getCustId());
+			
+			break;
+				
+		case"C":
+			System.out.println("Enter Customer Account Details for Checking Account.");
+			System.out.println("Balance: ");
+			int cAccBalance = sc.nextInt();
+			System.out.println("Overdraft: ");
+	
+			int od = sc.nextInt();	
+			
+			CheckingAccount newCAccount = new CheckingAccount();
+			newCAccount.storeAccountDetail(cAccBalance, od);
+			currentCust.addCAccount(newCAccount);
+			
+			db.insertAccount(cAccBalance, "Checking", currentCust.getCustId());
+
+		break;
+		default:
+			System.out.println("Please enter S or C");
+			}
+		}
+	public boolean mainMenu(boolean retry) {
+		try {
+			System.out.println("-----------------Welcome to Bank of Pablo-----------------");
+			System.out.println("----------------------------------------------------------");
+			System.out.println("-------------------1--Customer Login----------------------");
+			System.out.println("-------------------2--Create New Customer-----------------");
+			System.out.println("-------------------3--Display All Customer(Admin Only)----");
+			System.out.println("-------------------4--Exit--------------------------------");
+			
+			System.out.println("Please select (1-4)");
 			int choiceofTransaction = sc.nextInt();
 			
 			switch(choiceofTransaction) {
 			case 1:
-				bankApp.storeAllCustomers();
-
 				System.out.println("Please enter customer ID");
 				Integer custId = sc.nextInt();
-				System.out.println(retry);
-
-				Customer currentCust = bankServices.searchCustomer(custId);
-				System.out.println(currentCust);
-				AccountServices ac = new AccountServices();
-				while(retry) {
-					System.out.println("hello");
-					retry = bankApp.menuScreen(ac, currentCust, retry);	
-				}
+				Customer currentCust = db.getCustomer(custId);
 				
+//				currentCust.displayAccounts();
+				db.showAllCustomerAccounts(custId);
+				System.out.println("Please enter Account ID");
+				Integer accId = sc.nextInt();
+				System.out.println("Hello!, " + currentCust.getCustName());
+				
+				while(retry) {
+					retry = menuScreen(currentCust, accId, retry);	
+				}
 				break;
 			case 2:
-				Customer customer = new Customer();
-				BankServices bServices = new BankServices();
-				bServices.addNewCustomer(customer);
+				newCustomer();
 				break;
 			case 3:
+				db.showAllCustomers();
+				break;
+			case 4:
 				retry = false;
 				break;
 			default:
 				System.out.println("Not a correct choice...of transaction");
 				break;
 			}
-
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.err.println(e.getMessage());
 		}
-		
 		return true;
 	}
-		
-	public boolean menuScreen(AccountServices ac, Customer currentCust, boolean retry)  throws CashWithdrawalException {
+	public boolean menuScreen(Customer currentCust, Integer accId, boolean retry)  throws CashWithdrawalException {
 		try {		
 			Scanner sc = new Scanner(System.in);
 			MyMainApp bankApp = new MyMainApp();
-			BankServices bankServices = new BankServices();
-
-			System.out.println("----------------------Welcome to BOA----------------------");
+			AccountServices ac = new AccountServices();
+			Account currentAcc = db.getAccount(accId);
+			int custId = currentAcc.getCustId();
+			
+			System.out.println("-----------------Welcome to Bank of Pablo-----------------");
 			System.out.println("----------------------------------------------------------");
 			System.out.println("-------------------1--Get Balance-------------------------");
 			System.out.println("-------------------2--Cash Withdrawl----------------------");
 			System.out.println("-------------------3--Fund Transfer-----------------------");
 			System.out.println("-------------------4--Display Account Details-------------");
-			System.out.println("-------------------5--Exit--------------------------------");
+			System.out.println("-------------------5--Display Transaction Details---------");
+			System.out.println("-------------------6--Add New Account---------------------");
+			System.out.println("-------------------7--Show Customer Information-----------");
+			System.out.println("-------------------8--Delete Customer Account-------------");
+			System.out.println("-------------------9--Delete Savings or Checking Acount---");
+			System.out.println("-------------------0--Exit--------------------------------");
 			System.out.println("----------------------------------------------------------");
 			
-			System.out.println("Enter your choice of transaction...");
+			System.out.println("Enter your choice of transaction(1-9)");
 			int choiceofTransaction = sc.nextInt();
 			
 			switch(choiceofTransaction) {
 			case 1:
-				System.out.println("Youre balance is : $" + ac.getBalance(currentCust));
+				currentAcc.getAccBalance();
 				break;
 			case 2:
 				System.out.println("Please enter the amount to withdrawal");
@@ -199,55 +217,104 @@ public boolean mainMenu(boolean retry) {
 				if (amountToWithdrawal < 0) {
 					throw new CashWithdrawalException();
 				}
-				ac.cashWithdraw(currentCust, amountToWithdrawal);
-				System.out.println("Thank you for your withdrawal of: " + amountToWithdrawal +". Your new balance is: $" + ac.getBalance(currentCust));
+				ac.cashWithdraw(amountToWithdrawal, currentAcc);
+				System.out.println("Thank you for your withdrawal of: " + amountToWithdrawal +". Your new balance is: $" + currentAcc.getAccBalance());
+				
+				Transaction newTransaction = new Transaction();
+				newTransaction.storeTransactionDetails(amountToWithdrawal, accId, "Withdrawal");
+				currentCust.addTransaction(newTransaction);
+				
+				//-----DB---//
+				//Update Account
+				db.updateAccount(custId, currentAcc.getAccBalance() - amountToWithdrawal);
+				
+				//Add transaction
+				dt = new java.util.Date();
+				currentTime = sdf.format(dt);
+				db.insertTransaction(amountToWithdrawal, accId, "Withdrawal", currentTime );
+				
 				break;
 			case 3:
 				boolean retryTransfer = true;
 				Customer recievingCustomer = null;
+				Account accountTo = null;
 				while(retryTransfer) {
 					System.out.println("Please enter the second customer id.");
-	
 					int recievingCustomerId = sc.nextInt();
-					 System.out.println("objcustomer---" + objCustomer[1].getCustId());
-					 System.out.println(bankServices.searchCustomer(recievingCustomerId));
-					 System.out.println("HELLLLO2");
-	
-					recievingCustomer = bankServices.searchCustomer(recievingCustomerId);
+				    recievingCustomer = db.getCustomer(recievingCustomerId);
+
+					System.out.println("Please enter the second customer Account id.");
+					int accountToId = sc.nextInt();
+					accountTo = db.getAccount(accountToId);
+					
 					retryTransfer = bankApp.validateAccount(recievingCustomer);	
 				}
 				
-	
 				System.out.println("Please enter the amount to transfer");
 				int amountToTrasnfer = sc.nextInt();
-				ac.fundTransfer(currentCust, recievingCustomer,amountToTrasnfer);
-				System.out.println("Thank you for your transfer of: " + amountToTrasnfer +". Your new balance is: $" + ac.getBalance(currentCust));
+//				ac.fundTransfer(currentAcc, accountTo, amountToTrasnfer);
+				System.out.println("Thank you for your transfer of: " + amountToTrasnfer +". Your new balance is: $" + currentAcc.getAccBalance());
+				
+				//-----DB---//
+				//Update Account
+				System.out.println("custId" + custId);
+				System.out.println("currentAcc.getAccBalance()" + currentAcc.getAccBalance());
+				System.out.println("amountToTrasnfer" + amountToTrasnfer);
+				System.out.println("accountTo.getCustId()" + accountTo.getCustId());
+				System.out.println("accountTo.getAccBalance()" + accountTo.getAccBalance());
+				
+				db.updateAccount(custId, currentAcc.getAccBalance() - amountToTrasnfer);
+				db.updateAccount(accountTo.getCustId(), accountTo.getAccBalance() + amountToTrasnfer);
+
+				//Add transaction
+				dt = new java.util.Date();
+				currentTime = sdf.format(dt);
+				db.insertTransaction(amountToTrasnfer, accId, "Transfer", currentTime );
+				
 				break;
 			case 4:
-				currentCust.displayCustomerDetail();
+				db.showAllCustomerAccounts(custId);
 				break;
 			case 5:
+				currentCust.displayTransactions();
+				break;
+			case 6:
+				newAccount(currentCust);
+				break;
+			case 7:
+//				currentCust.displayCustomerDetail();
+				break;
+			case 8:
+				allCustomers.deleteCustomer(currentCust.getCustId());
+				break;
+			case 9:
+				currentCust.deleteAcc(accId);
+//				currentCust.displayAccounts();
+				
+				System.out.println("Please enter Account ID");
+				Integer newAccId = sc.nextInt();
+				
+				while(retry) {
+					retry = menuScreen(currentCust, newAccId, retry);	
+				}
+				break;
+			case 0:
 				retry = false;
 				break;
 			default:
-					System.out.println("Not a correct choice...of transaction");
+					System.out.println("Not a correct choice of transaction");
 					break;
 			}
-	//		System.out.println("do you want to continue...(Y/N");
-	//		String choice = sc.next();
-	//		if(!choice.equals("Y")) {
-	//			break;
-	//		}
+
 		} catch (CashWithdrawalException e) {
-			// TODO: handle exception
 			System.out.println(e.getErrorMesssage());
 		}
 		catch (Exception e) {
-			// TODO: handle exception
+			System.err.println(e.getMessage());
 		}
 			return retry;
 	}
-
+	
 	private boolean validateAccount(Customer recievingCustomer) throws NullAccountException {
 		try {
 			if(recievingCustomer == null ) {
@@ -274,21 +341,19 @@ public boolean mainMenu(boolean retry) {
 			return true;
 		}
 	}
-	
 	public static void main(String s[]){
 		try{
 			MyMainApp bankApp = new MyMainApp();
-
+			MyMainApp.storeAllCustomers();
 			boolean retry = true;
+			
 			while(retry) {
-				retry = bankApp.mainMenu( retry);	
+				retry = bankApp.mainMenu(retry);	
 			}
-				
 		}catch (Exception e) {
-		// TODO: handle exception
+			System.err.println(e.getMessage());
 		}finally {
-			System.out.println("Thank you Note lol");
+			System.out.println("~~~Thank you for visiting Pablo's Bank. Until next time~~~");
 		}	
 	}
-
 }
